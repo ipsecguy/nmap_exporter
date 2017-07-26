@@ -1,0 +1,2 @@
+# Minute, jede Stunde, Tag, Monat, Wochentag
+*/15 * * * * root /usr/local/bin/nmap-pushgateway.sh
