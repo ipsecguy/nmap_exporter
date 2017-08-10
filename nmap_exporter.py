@@ -37,9 +37,13 @@ def print_scan(nmap_report):
         else:
             tmp_host = host.address
 
+        tmp_vendor = host.vendor
+        if len(host.vendor) == 0 and len(host.mac) != 0:
+            tmp_vendor = "OUI " + host.mac[0:8]
+
         print("nmap_host{{hostname=\"{0}\",ipv4address=\"{1}\",ipv6address=\"{2}\",macaddress=\"{3}\",macvendor=\"{4}\",status=\"{5}\",distance=\"{6}\"}} {7}".format(
             tmp_host,
-            host.ipv4, host.ipv6, host.mac, host.vendor,
+            host.ipv4, host.ipv6, host.mac, tmp_vendor,
             host.status,
             host.distance,
             1 if host.status == "up" else 0))
